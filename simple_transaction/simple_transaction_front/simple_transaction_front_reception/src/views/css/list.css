@@ -1,0 +1,62 @@
+/*header模块追加*/
+    /*sk区域*/
+.sk {
+    position: absolute;
+    left: 190px;
+    top: 40px;
+    border-left: 1px solid #c81623;
+    padding: 3px 0 3px 14px;
+}
+/*nav模块修改*/
+.nav {
+    overflow: hidden;
+}
+    /*sk_list区域*/
+.sk_list {
+    float: left;
+}
+.sk_list ul li {
+    float: left;
+}
+.sk_list ul li a {
+    display: block;
+    padding: 0 30px;
+    line-height: 47px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+}
+    /*sk_con区域*/
+.sk_con {
+    float: left;
+}
+.sk_con ul li {
+    float: left;
+}
+.sk_con ul li a {
+    display: block;
+    padding: 0 20px;
+    line-height: 49px;
+    font-size: 14px;
+}
+.sk_con ul li:last-child a::after {
+    content: '\e91e';
+    font-family: 'icomoon';
+}
+/*sk_container列表页模块*/
+    /*sk_hd区域*/
+    /*sk_bd区域*/
+.sk_bd ul li {
+    overflow: hidden;
+    float: left;
+    margin-right: 13px;
+    width: 290px;
+    height: 460px;
+    border: 1px solid transparent;
+}
+.sk_bd ul li:nth-child(4n) {
+    margin-right: 0;
+}
+.sk_bd ul li:hover {
+    border: 1px solid #c81623;
+}
