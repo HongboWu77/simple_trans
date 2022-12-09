@@ -1,11 +1,11 @@
-package com.ynu.springboot_demo;
+package com.ynu.simple_transaction_back;
 
-import com.ynu.springboot_demo.dao.OrderDao;
-import com.ynu.springboot_demo.dao.ShopDao;
-import com.ynu.springboot_demo.dao.UserDao;
-import com.ynu.springboot_demo.entity.Order;
-import com.ynu.springboot_demo.entity.Shop;
-import com.ynu.springboot_demo.entity.User;
+import com.ynu.simple_transaction_back.dao.OrderDao;
+import com.ynu.simple_transaction_back.dao.ShopDao;
+import com.ynu.simple_transaction_back.dao.UserDao;
+import com.ynu.simple_transaction_back.entity.Order;
+import com.ynu.simple_transaction_back.entity.Shop;
+import com.ynu.simple_transaction_back.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
@@ -15,13 +15,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
 
 //测试类
 @SpringBootTest
-class SpringbootDemoApplicationTests {
+class SimpleTransactionBackApplicationTests {
     //从容器中获取dao
     @Resource
     private UserDao userDao;

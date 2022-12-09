@@ -1,4 +1,4 @@
-package com.ynu.springboot_demo.entity;
+package com.ynu.simple_transaction_back.entity;
 
 import lombok.*;
 

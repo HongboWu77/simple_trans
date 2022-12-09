@@ -1,8 +1,8 @@
-package com.ynu.springboot_demo.controller;
+package com.ynu.simple_transaction_back.controller;
 
-import com.ynu.springboot_demo.dao.UserDao;
-import com.ynu.springboot_demo.entity.CommonResult;
-import com.ynu.springboot_demo.entity.User;
+import com.ynu.simple_transaction_back.dao.UserDao;
+import com.ynu.simple_transaction_back.entity.CommonResult;
+import com.ynu.simple_transaction_back.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;

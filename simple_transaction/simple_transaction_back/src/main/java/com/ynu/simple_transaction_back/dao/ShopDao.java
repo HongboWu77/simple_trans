@@ -1,6 +1,6 @@
-package com.ynu.springboot_demo.dao;
+package com.ynu.simple_transaction_back.dao;
 
-import com.ynu.springboot_demo.entity.Shop;
+import com.ynu.simple_transaction_back.entity.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
