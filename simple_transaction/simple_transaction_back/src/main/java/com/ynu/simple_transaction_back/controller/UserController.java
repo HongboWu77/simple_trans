@@ -12,10 +12,6 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author xiaobai
- * @create 2022-10-22-
- */
 @Api(tags = "用户接口")
 @RestController
 public class UserController {

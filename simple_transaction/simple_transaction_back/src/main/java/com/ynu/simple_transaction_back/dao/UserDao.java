@@ -6,10 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-/**
- * @author xiaobai
- * @create 2022-10-22-
- */
 //User实体类的持久化维护接口
 public interface UserDao extends JpaRepository<User,Long> {
     //自定义的维护操作：根据姓名查询用户

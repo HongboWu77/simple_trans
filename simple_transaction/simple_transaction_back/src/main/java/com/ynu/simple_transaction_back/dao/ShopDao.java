@@ -6,10 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-/**
- * @author xiaobai
- * @create 2022-10-22-
- */
 //Shop实体类的持久化维护接口
 public interface ShopDao extends JpaRepository<Shop,Long> {
     //自定义的维护操作：根据商家名字查询商家

@@ -6,10 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-/**
- * @author xiaobai
- * @create 2022-10-22-
- */
 //Order实体类的持久化维护接口
 public interface OrderDao extends JpaRepository<Order,Long> {
     //自定义的维护操作：根据订单名字查询订单

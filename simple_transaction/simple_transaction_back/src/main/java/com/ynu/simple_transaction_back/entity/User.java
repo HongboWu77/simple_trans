@@ -4,10 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-/**
- * @author xiaobai
- * @create 2022-10-22-
- */
 @Entity
 //User实体类对应的表名
 @Table(name = "user")

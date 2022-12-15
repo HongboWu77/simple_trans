@@ -35,8 +35,4 @@ header a {
 header a.router-link-exact-active {
   color: #42b983;
 }
-
-.main {
-  background-color: ;
-}
 </style>
