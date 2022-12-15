@@ -4,10 +4,14 @@
     <div class="w">
       <div class="fl">
         <ul>
-          <li>小白之家欢迎您！&nbsp;&nbsp;</li>
-          <li>
+          <li>小白之家欢迎您！&nbsp;</li>
+          <li v-if="login_status.login_status==='layout'">
             <a href="/login">请登录&nbsp;</a>
             <a href="/registry" class="style-red">免费注册</a>
+          </li>
+          <li v-if="login_status.login_status==='login'">
+            <a href="#">小白 </a>
+            <button v-on:click="layout" class="style-red" style="font-size:10px">退出登录</button>
           </li>
         </ul>
       </div>
@@ -71,7 +75,7 @@
         <div class="dd">
           <ul>
             <li><a href="#">家用电器</a></li>
-            <li><a href="/list">手机、<a href="#">数码</a>、<a href="#">通信</a></a></li>
+            <li><a href="#">手机、数码、通信</a></li>
             <li><a href="#">电脑、办公</a></li>
             <li><a href="#">家具、家具、家装、厨具</a></li>
             <li><a href="#">男装、女装、童装、内衣</a></li>
@@ -110,7 +114,7 @@
       <div class="focus">
         <ul>
           <li>
-            <img src="./upload/focus1.png" alt="">
+            <img src="./upload/focus1.png" alt="" v-on:click="list">
           </li>
         </ul>
       </div>
@@ -484,8 +488,38 @@
   <!--底部模块 end-->
 </template>
 
-<script>
+<script setup>
+import {getCurrentInstance, reactive} from "vue";
 
+const {proxy} = getCurrentInstance()
+let login_status = reactive({
+  login_status: 'layout'
+})
+const refresh = ()=>{
+  proxy.$forceUpdate()
+}
+const layout = ()=>{
+  login_status.login_status = 'layout'
+  proxy.$router.push({
+    path: '/',
+    query: {
+      login_status: login_status.login_status
+    }
+  })
+}
+const list = ()=>{
+  proxy.$router.push({
+    path: '/list',
+    query: {
+      login_status: login_status.login_status
+    }
+  })
+}
+
+
+if(proxy.$route.query.login_status==='login'){
+  login_status.login_status = proxy.$route.query.login_status
+}
 </script>
 
 <style scoped>

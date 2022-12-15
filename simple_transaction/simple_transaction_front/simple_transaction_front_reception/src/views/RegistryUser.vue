@@ -9,7 +9,7 @@
       <h3>
         注册新用户
         <div class="login">
-          我有账号，去<a href="#" class="style_red">登录</a>
+          我有账号，去<a href="/login" class="style_red">登录</a>
         </div>
       </h3>
       <div class="red_form">
@@ -59,7 +59,7 @@
               <a href="#">《知晓用户协议》</a>
             </li>
             <li>
-              <input type="submit" value="完成注册" class="btn">
+              <input type="button" value="完成注册" class="btn" v-on:click="registry">
             </li>
           </ul>
         </form>
@@ -92,6 +92,17 @@
     </footer>
   </div>
 </template>
+
+<script setup>
+import {getCurrentInstance} from "vue";
+
+const {proxy} = getCurrentInstance()
+const registry = ()=>{
+  proxy.$router.push({
+    path: '/'
+  })
+}
+</script>
 
 <style scoped>
   @import './css/register.css';

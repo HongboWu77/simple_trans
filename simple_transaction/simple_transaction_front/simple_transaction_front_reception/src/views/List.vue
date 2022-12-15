@@ -5,9 +5,15 @@
       <div class="fl">
         <ul>
           <li>小白之家欢迎您！&nbsp;</li>
-          <li>
+          <li v-if="login_status.login_status==='layout'">
             <a href="/login">请登录&nbsp;</a>
             <a href="/registry" class="style-red">免费注册</a>
+            <a href="/">&nbsp;&nbsp;&nbsp;退回首页</a>
+          </li>
+          <li v-if="login_status.login_status==='login'">
+            <a href="#">小白 </a>
+            <button v-on:click="layout" class="style-red" style="font-size:10px">退出登录</button>
+            <a href="" v-on:click="trans">&nbsp;&nbsp;&nbsp;退回首页</a>
           </li>
         </ul>
       </div>
@@ -36,7 +42,7 @@
   <header class="header w">
     <div class="logo">
       <h1>
-        <a href="/" title="品优购商城">小白之家</a>
+        <a href="#" title="小白之家">小白之家</a>
       </h1>
     </div>
     <div class="sk">
@@ -225,6 +231,39 @@
   </footer>
   <!--底部模块 end-->
 </template>
+
+<script setup>
+import {getCurrentInstance, reactive} from "vue";
+
+const {proxy} = getCurrentInstance()
+let login_status = reactive({
+  login_status: 'layout'
+})
+const refresh = ()=>{
+  this.$forceUpdate()
+}
+const layout = ()=>{
+  login_status.login_status = 'layout'
+  proxy.$router.push({
+    path: '/list',
+    query: {
+      login_status: login_status.login_status
+    }
+  })
+}
+const trans = ()=>{
+  proxy.$router.push({
+    path: '/',
+    query: {
+      login_status: login_status.login_status
+    }
+  })
+}
+
+if(proxy.$route.query.login_status==='login'){
+  login_status.login_status = proxy.$route.query.login_status
+}
+</script>
 
 <style scoped>
   @import './css/base.css';
