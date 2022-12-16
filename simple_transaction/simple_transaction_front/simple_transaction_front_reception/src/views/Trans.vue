@@ -10,7 +10,7 @@
             <a href="/registry" class="style-red">免费注册</a>
           </li>
           <li v-if="login_status.login_status==='login'">
-            <a href="#">小白 </a>
+            <a href="#">{{login_status.login_name}}&nbsp;&nbsp;&nbsp;</a>
             <button v-on:click="layout" class="style-red" style="font-size:10px">退出登录</button>
           </li>
         </ul>
@@ -493,17 +493,20 @@ import {getCurrentInstance, reactive} from "vue";
 
 const {proxy} = getCurrentInstance()
 let login_status = reactive({
-  login_status: 'layout'
+  login_status: 'layout',
+  login_name: ''
 })
 const refresh = ()=>{
   proxy.$forceUpdate()
 }
 const layout = ()=>{
   login_status.login_status = 'layout'
+  login_status.login_name = ''
   proxy.$router.push({
     path: '/',
     query: {
-      login_status: login_status.login_status
+      login_status: login_status.login_status,
+      login_name: login_status.login_name
     }
   })
 }
@@ -511,7 +514,8 @@ const list = ()=>{
   proxy.$router.push({
     path: '/list',
     query: {
-      login_status: login_status.login_status
+      login_status: login_status.login_status,
+      login_name: login_status.login_name
     }
   })
 }
@@ -519,6 +523,7 @@ const list = ()=>{
 
 if(proxy.$route.query.login_status==='login'){
   login_status.login_status = proxy.$route.query.login_status
+  login_status.login_name = proxy.$route.query.login_name
 }
 </script>
 

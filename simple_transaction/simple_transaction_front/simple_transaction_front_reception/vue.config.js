@@ -8,11 +8,14 @@ module.exports = defineConfig({
     https: false,
     hot: true,
     open: true,
-    proxy: {
+    proxy:{
       "/api":{
-        target: "http://localhost:8080",
-        changeOrigin: true,
-        pathRewrite: {
+        //目标服务器
+        target:"http://localhost:8080",
+        //是否支持跨域
+        changeOrigin:true,
+        //路径重写
+        pathRewrite:{
           "^/api":"/"
         }
       }

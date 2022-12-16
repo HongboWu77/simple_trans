@@ -16,16 +16,16 @@
         <form action="">
           <ul>
             <li>
-              <label for="phone_number">手机号：</label>
-              <input type="text" id="phone_number" class="inp">
+              <label for="phone_number">用户名：</label>
+              <input type="text" id="phone_number" class="inp" v-model="form.name">
               <span class="error">
                             <i class="error_icon"></i>
                             手机号码格式不正确，请重新输入
                         </span>
             </li>
             <li>
-              <label for="check_number">短信验证码：</label>
-              <input type="text" id="check_number" class="inp">
+              <label for="check_number">性别：</label>
+              <input type="text" id="check_number" class="inp" v-model="form.sex">
               <span class="success">
                             <i class="success_icon"></i>
                             短信验证码输入正确
@@ -33,7 +33,7 @@
             </li>
             <li>
               <label for="secret">登陆密码：</label>
-              <input type="password" id="secret" class="inp">
+              <input type="password" id="secret" class="inp" v-model="form.password">
               <span class="error">
                             <i class="error_icon"></i>
                             密码格式不正确，请重新输入
@@ -47,7 +47,7 @@
             </li>
             <li>
               <label for="re_secret">确认密码：</label>
-              <input type="password" id="re_secret" class="inp">
+              <input type="password" id="re_secret" class="inp" v-model="form.password">
               <span class="error">
                             <i class="error_icon"></i>
                             确认密码格式不正确，请重新输入
@@ -94,12 +94,41 @@
 </template>
 
 <script setup>
-import {getCurrentInstance} from "vue";
+import {getCurrentInstance, reactive} from "vue";
 
 const {proxy} = getCurrentInstance()
+let form = reactive({
+  name: '',
+  password: '',
+  sex: ''
+})
 const registry = ()=>{
-  proxy.$router.push({
-    path: '/'
+  //向服务器提交注册请求：本质为增加用户
+  proxy.$http.post('/user',{
+    userName: form.name,
+    userPassword: form.password,
+    userSex: form.sex
+  }).then(function (response){
+    if(response.data.data){
+      //注册成功的处理
+      console.log(response.data.data)
+      window.alert('注册成功，id如下：'+response.data.data.userId)
+      //进行路由切换
+      proxy.$router.push({
+        path: '/',
+        query: {
+          login_status: 'login',
+          login_name: response.data.data.userName
+        }
+      })
+    }else{
+      //注册失败的处理
+      console.log(response.data.data)
+      console.log("注册失败！")
+      window.alert('注册失败！')
+    }
+  }).catch(function (){
+
   })
 }
 </script>

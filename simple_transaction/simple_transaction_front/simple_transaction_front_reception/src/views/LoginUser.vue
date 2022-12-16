@@ -17,7 +17,7 @@
           <ul>
             <li>
               <label for="phone_number">用户名：</label>
-              <input type="text" id="phone_number" class="inp">
+              <input type="text" id="phone_number" class="inp" v-model="form.id">
               <span class="error">
                 <i class="error_icon"></i>
                 用户名格式不正确，请重新输入
@@ -25,7 +25,7 @@
             </li>
             <li>
               <label for="re_secret">密码：</label>
-              <input type="password" id="re_secret" class="inp">
+              <input type="password" id="re_secret" class="inp" v-model="form.password">
               <span class="error">
                 <i class="error_icon"></i>
                 密码格式不正确，请重新输入
@@ -74,14 +74,35 @@
 <script setup>
 import {getCurrentInstance, reactive} from "vue";
 
+let form = reactive({
+  id: '',
+  password: ''
+})
 const {proxy} = getCurrentInstance()
 const login = ()=>{
-  proxy.$router.push({
-    path: '/',
-    query: {
-      login_status: 'login'
+  proxy.$http.post('/login',{
+    userId:form.id,
+    userPassword:form.password
+  }).then(function(response){
+    if(response.data.data === 1){
+      //登陆成功的处理
+      console.log("登陆成功，进行路由切换:/")
+      window.alert("登陆成功！")
+      //进行路由切换
+      proxy.$router.push({
+        path: '/',
+        query: {
+          login_status: 'login'
+        }
+      })
+    }else{
+      console.log(response.data.data)
+      console.log("登陆失败，Id或密码错误！")
+      window.alert("登陆失败，Id或密码错误！")
     }
-  })
+  }).catch(function (){
+
+  });
 }
 </script>
 
